@@ -1,0 +1,26 @@
+<div class="container mt-5 mb-5">
+    <div class="row g-4">
+        @for (product of allProducts; track $index) {
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="product cursor-pointer text-center p-3 position-relative border border-1">
+                    <img [src]="product.imageCover" class="img-fluid" alt="">
+                    <h6 class="text-main">{{product.category.name}}</h6>
+                    @if (product.title.split(' ').length > 3) {
+                        <h4 class="text-dark">{{product.title.split(' ').slice(0, 3).join(' ')}}..</h4>
+                    }
+                    @else {
+                        <h4 class="text-dark fw-bolder">{{product.title}}</h4>
+                    }
+                    <div class="d-flex justify-content-between align-content-center">
+                        <div class="fw-bold">{{product.price}} EGP</div>
+                        <div><i class="fa-solid fa-star rating-color"></i> {{product.ratingsAverage}}</div>
+                    </div>
+                    <div class="d-grid mt-2">
+                        <button class="btn btn-success btn-block"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                    </div>
+               
+                </div>
+            </div>
+        }
+    </div>
+</div>
