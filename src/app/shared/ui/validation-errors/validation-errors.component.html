@@ -1,0 +1,24 @@
+@if (formName.get(controlName)?.errors && !formName.get(controlName)?.pristine) {
+    <div class="alert alert-danger">
+        <ul class="mb-0 list-unstyled">
+            @if (formName.get(controlName)?.getError('required')) {
+                <li>{{controlName}} is required</li>
+            }
+            @if (formName.get(controlName)?.getError('minlength')) {
+                <li>{{controlName}} must be at least 2 characters long</li>
+            }
+            @if (formName.get(controlName)?.getError('maxlength')) {
+                <li>{{controlName}} must not exceed 20 characters long</li>
+            }
+            @if (formName.get(controlName)?.getError('email')) {
+                <li>Insert a valid {{controlName}}</li>
+            }
+            @if (formName.get(controlName)?.getError('pattern')) {
+                <li>{{controlName}} must be at least 8 characters with 1 uppercase, 1 lower case, 1 digit, 1 special character</li>
+            }
+            @if (formName.get(controlName)?.getError('mismatch') && controlName == "rePassword") {
+                <li>{{controlName}} must match password</li>
+            }
+        </ul>
+    </div>
+}

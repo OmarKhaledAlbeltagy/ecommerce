@@ -1,1 +1,39 @@
-<p>signup works!</p>
+<div class="container">
+    <form class="w-75 mx-auto my-5" [formGroup]="registerForm" (submit)="sendData()">
+        <legend>Register Now:</legend>
+        <div class="mb-3" [ngClass]="validStatus('name')">
+            <label for="" class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="Enter Your Name">
+        </div>
+        <validation-errors [formName]="registerForm" controlName="name"></validation-errors>
+
+
+        <div class="mb-3" [ngClass]="validStatus('email')">
+            <label for="" class="form-label">Email</label>
+            <input formControlName="email" type="email" class="form-control" placeholder="Enter Your Email">
+        </div>
+        <validation-errors [formName]="registerForm" controlName="email"></validation-errors>
+
+
+        <div class="mb-3" [ngClass]="validStatus('password')">
+            <label for="" class="form-label">Password</label>
+            <input formControlName="password" type="password" class="form-control" placeholder="Enter Your Password">
+        </div>
+       <validation-errors [formName]="registerForm" controlName="password"></validation-errors>
+
+
+        <div class="mb-3" [ngClass]="validStatus('rePassword')">
+            <label for="" class="form-label">Repassword</label>
+            <input formControlName="rePassword" type="password" class="form-control" placeholder="Confirm Password">
+        </div>
+        <validation-errors [formName]="registerForm" controlName="rePassword"></validation-errors>
+
+
+        <div class="text-center">
+            <button class="btn btn-success" [disabled]="registerForm.invalid">Register</button>
+        </div>
+        
+    </form>
+</div>
+
+

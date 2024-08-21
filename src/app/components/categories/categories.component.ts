@@ -10,10 +10,12 @@ import { Category } from '../../core/interfaces/category';
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent implements OnInit {
-  
+
 constructor(private _CategoriesService:CategoriesService){
 
 }
+
+
 allcategories:Category[] = [];
 
 getCategories(){
