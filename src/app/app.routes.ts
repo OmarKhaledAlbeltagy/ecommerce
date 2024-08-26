@@ -10,14 +10,16 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { ProductsComponent } from './components/products/products.component';
 import { ProductComponent } from './components/product/product.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { authGuard } from './core/guards/auth.guard';
+import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 
 export const routes: Routes = [
-    {path:"", component:AuthLayoutComponent, children:[
+    {path:"", component:AuthLayoutComponent, canActivate:[isLoggedInGuard], children:[
         {path:"", redirectTo:"signin", pathMatch:"full"},
         {path:"signup",component:SignupComponent,title:"Registration"},
         {path:"signin", component:SigninComponent, title:"Login"}
     ]},
-    {path:"", component:MainLayoutComponent, children:[
+    {path:"", component:MainLayoutComponent, canActivate:[authGuard], children:[
         {path:"", redirectTo:"home", pathMatch:"full"},
         {path:'home',component:HomeComponent, title:"Home"},
         {path:'brands',component:BrandsComponent, title:"Brands"},

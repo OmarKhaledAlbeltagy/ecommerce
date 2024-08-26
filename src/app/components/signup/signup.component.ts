@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ValidationErrorsComponent } from "../../shared/ui/validation-errors/validation-errors.component";
-import { confirmPasswordValidation } from '../../shared/utilities/confirm-password.utility';
 import { signupValidation } from '../../shared/validators/register.validators';
+import { confirmPasswordValidation } from '../../shared/utilities/confirm-password.utility';
+import { AuthService } from '../../core/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,29 +17,22 @@ import { signupValidation } from '../../shared/validators/register.validators';
 })
 export class SignupComponent {
 
-
-
-  registerForm: FormGroup = new FormGroup({
-    name: new FormControl(null, signupValidation.name),
-    email: new FormControl(null, signupValidation.email),
-    password: new FormControl(null, signupValidation.password),
-    rePassword: new FormControl(null)
-  }, confirmPasswordValidation)
+    private readonly _FormBuilder = inject(FormBuilder);
+    private readonly _AuthService = inject(AuthService);
+    private readonly _Router = inject(Router);
+    isButtonSubmit = false;
+    errorMessage:string = "";
+    registerForm = this._FormBuilder.group({
+      name:[null,signupValidation.name],
+      email:[null,signupValidation.email],
+      password:[null,signupValidation.password],
+      rePassword:[null]
+    },{validators: [confirmPasswordValidation]})
 
 
   validStatus(controlName: string): string {
     const control = this.registerForm.get(controlName);
-    if (!control?.pristine) {
-      if (control?.valid) {
-        return 'valid';
-      }
-      else {
-        return 'invalid'
-      }
-    }
-    else {
-      return 'nottouched'
-    }
+    return !control?.pristine && control?.valid ? 'is-valid' : !control?.pristine && control?.invalid ? 'is-invalid' : ""
   }
 
 
@@ -44,7 +40,21 @@ export class SignupComponent {
 
 
   sendData() {
-    console.log(this.registerForm);
+    if (this.registerForm.valid) {
+      this.isButtonSubmit = true;
+      this._AuthService.signup(this.registerForm.value).subscribe({
+        next: (res) => { 
+          this.isButtonSubmit = false;
+          if (res.message == "success") {
+            this._Router.navigate(['/signin']);
+          }
+        },
+        error: (error:HttpErrorResponse) => {
+          this.isButtonSubmit = false
+          this.errorMessage = error.message;
+        }
+      });
+    }
   }
 
 }
