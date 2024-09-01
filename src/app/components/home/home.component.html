@@ -1,9 +1,24 @@
-<div class="container mt-5 mb-5">
+<div>
+    <app-slider></app-slider>
+</div>
+<div class="mb-5">
+    <app-category-slider></app-category-slider>
+</div>
+
+
+
+<div class="container mb-5">
+
     <div class="row g-4">
+        @if (allProducts.length != 0) {
+            <div class="col-12 mt-5">
+                <h3 class="text-center">Products</h3>
+            </div>
+        }
         @for (product of allProducts; track $index) {
             <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="product cursor-pointer text-center p-3 position-relative border border-1">
-                    <img [src]="product.imageCover" class="img-fluid" alt="">
+                    <img [src]="product.imageCover" class="img-fluid" alt="" routerLink="/product/{{product._id}}">
                     <h6 class="text-main">{{product.category.name}}</h6>
                     @if (product.title.split(' ').length > 3) {
                         <h4 class="text-dark">{{product.title.split(' ').slice(0, 3).join(' ')}}..</h4>

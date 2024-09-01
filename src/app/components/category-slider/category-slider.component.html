@@ -1,0 +1,13 @@
+
+<owl-carousel-o [options]="customOptions">
+   
+@for (category of Categories; track $index) {
+        <ng-container>
+            <ng-template carouselSlide [id]="category._id">
+              <img [src]="category.image" [alt]="category.name" [title]="category.name" height="200px">
+              <p class="text-center text-main">{{category.name}}</p>
+            </ng-template>
+        </ng-container>
+}
+
+</owl-carousel-o>

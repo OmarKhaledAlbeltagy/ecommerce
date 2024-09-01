@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,5 +9,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+
+  constructor(private _Router:Router){
+
+  }
+
+  signout(){
+    localStorage.removeItem('token');
+    this._Router.navigate(['/signin']);
+  }
+
 
 }
