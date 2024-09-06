@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
 :root
 {
     --main-color:#0aad0a;
@@ -128,3 +129,9 @@ button.bg-main:hover{
     background-color: #0c7f0c !important;
 
 }
+
+.main-border{
+    border:solid 1px var(--main-color)
+}
+
+

@@ -1,1 +1,21 @@
-<p>brands works!</p>
+@if (isLoading == true) {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="fa-solid fa-spinner fa-spin text-main" style="font-size: 60px;"></div>
+    </div>
+}
+@else{
+    <div class="container mt-5 mb-5">
+        <div class="row gy-3">
+            @for (brand of allBrands.data; track $index) {
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card cateogry cursor-pointer position-relative overflow-hidden">
+                        <img [src]="brand.image" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bolder">{{brand.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

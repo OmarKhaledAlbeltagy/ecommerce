@@ -1,1 +1,47 @@
-<p>cart works!</p>
+@if (isLoading == true) {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="fa-solid fa-spinner fa-spin text-main" style="font-size: 60px;"></div>
+    </div>
+}
+@else {
+    @if (cart.data.products.length == 0) {
+        <div class="container vh-100 d-flex justify-content-center align-items-center">
+            <h1 class="text-muted fw-bolder">Cart Empty</h1>
+        </div>
+    }
+  <div class="container w-75 p-5">
+    <div class="container d-flex justify-content-end">
+        <button class="btn bg-transparent" (click)="clearCart()"> <i class="fa-solid fa-ban"></i> Clear Cart</button>
+    </div>
+    @for (productItem of cart.data.products; track $index) {
+        <div class="row py-3 my-3 border-bottom">
+            <div class="col-2">
+                <img [src]="productItem.product.imageCover" class="w-100" alt="">
+            </div>
+            <div class="col-7">
+                <h3>{{productItem.product.title}}</h3>
+                <h3 class="text-main">Price: {{productItem.price}}</h3>
+                <button class="btn px-0" (click)="removeItemFromCart(productItem.product._id)"><i class="fa-solid fa-trash text-main"></i> Remove</button>
+            </div>
+            <div class="col-3 d-flex flex-column justify-content-evenly">
+
+                <div class="d-flex align-items-center justify-content-evenly">
+                    <button [disabled]="productItem.count == productItem.product.quantity" class="btn main-border" (click)="updateCartQuantity(productItem.product._id, productItem.count + 1)"><i class="fa-solid fa-plus"></i></button>
+                    <h4>{{productItem.count}}</h4>
+                    <button [disabled]="productItem.count == 1"  class="btn main-border" (click)="updateCartQuantity(productItem.product._id, productItem.count - 1)"><i class="fa-solid fa-minus"></i></button>
+                </div>
+                <div class="d-flex justify-content-center align-items-end">
+                   
+                    <p class="text-main fs-4">Total:  {{productItem.count * productItem.price}} EGP</p>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container d-flex justify-content-between">
+        <h2>Total: {{cart.data.totalCartPrice}}</h2>
+        <button class="btn bg-main text-light" routerLink="/address/{{cart.cartId}}"><i class="fa-solid fa-cart-shopping"></i> Place Order</button>
+    </div>
+
+  </div>
+}
+

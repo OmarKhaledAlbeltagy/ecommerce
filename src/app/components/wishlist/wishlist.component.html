@@ -1,0 +1,32 @@
+@if (isLoading == true) {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="fa-solid fa-spinner fa-spin text-main" style="font-size: 60px;"></div>
+    </div>
+}
+@else {
+    @if (wishList.data.length == 0) {
+        <div class="container vh-100 d-flex justify-content-center align-items-center">
+            <h1 class="text-muted fw-bolder">Wishlist Empty</h1>
+        </div>
+    }
+  <div class="container w-75 p-5">
+    @for (product of wishList.data; track $index) {
+        <div class="row py-3 my-3 border-bottom">
+            <div class="col-2">
+                <img [src]="product.imageCover" class="w-100" alt="">
+            </div>
+            <div class="col-10">
+                <h3>{{product.title}}</h3>
+                <h3 class="text-main">Price: {{product.price}}</h3>
+            </div>
+            <div class="offset-2 col-10">
+                <button class="w-100 btn bg-main text-white" (click)="addToCart(product._id,product.title)"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+
+            </div>
+        </div>
+    }
+ 
+
+  </div>
+}
+

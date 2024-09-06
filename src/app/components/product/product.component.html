@@ -18,7 +18,15 @@
                         <h5>{{product.price}} EGP</h5>
                         <h5><i class="fa-solid fa-star" style="color: #FFD43B;"></i> {{product.ratingsAverage}}</h5>
                 </div>
-                <button class="w-100 btn bg-main text-white mt-5" (click)="addToCart()"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                <div class="mt-5 row">
+                    <div class="col-8">
+                        <button class="w-100 btn bg-main text-white" (click)="addToCart()"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-outline-danger w-100"><i class="fa-solid fa-heart"></i> Add to Wishlist</button>
+                    </div>
+                </div>
+             
             </div>
         </div>
     </div>

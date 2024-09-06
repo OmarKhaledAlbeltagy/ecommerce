@@ -4,6 +4,7 @@ import { ProductsService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/product';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../../core/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +18,8 @@ private readonly _ActivatedRoute = inject(ActivatedRoute);
 private readonly _ProductsService = inject(ProductsService);
 private readonly _CartService = inject(CartService);
 private readonly _Router = inject(Router);
+private readonly toastr = inject(ToastrService);
+
 product!:Product;
 isLoading = true;
 
@@ -34,8 +37,11 @@ addToCart(){
 this._CartService.addToCart(this.product._id).subscribe({
   next:(res)=>{
     this.isLoading = false
-    this._Router.navigate(['/cart']);
-  }
+    this.toastr.success(this.product.title+' added to cart','',{
+      progressBar:true
+    });
+  },
+  error:(err)=>{this.toastr.error("error occured while adding to cart")}
 })
 }
 

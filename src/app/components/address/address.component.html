@@ -1,0 +1,25 @@
+<div class="container w-75 p-5">
+    <form [formGroup]="address" (ngSubmit)="payment()">
+        <div class="my-3">
+            <label for="" class="form-label">City</label>
+           <select class="form-select" formControlName="city">
+            <option value="">Choose City</option>
+            <option value="Cairo">Cairo</option>
+            <option value="Giza">Giza</option>
+            <option value="Alexandria">Alexandria</option>
+            <option value="Aswan">Aswan</option>
+           </select>
+        </div>
+        <div class="my-3">
+            <label for="" class="form-label">Address Details</label>
+            <input type="text" class="form-control" formControlName="details">
+        </div>
+        <div class="my-3">
+            <label for="" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" formControlName="phone">
+        </div>
+        <div class="my-3 text-center">
+            <button class="btn bg-main text-light" [disabled]="address.invalid"><i class="fa-solid fa-credit-card"></i> Checkout</button>
+        </div>
+    </form>
+</div>

@@ -12,6 +12,8 @@ import { ProductComponent } from './components/product/product.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { authGuard } from './core/guards/auth.guard';
 import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
+import { AddressComponent } from './components/address/address.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 export const routes: Routes = [
     {path:"", component:AuthLayoutComponent, canActivate:[isLoggedInGuard], children:[
@@ -21,12 +23,15 @@ export const routes: Routes = [
     ]},
     {path:"", component:MainLayoutComponent, canActivate:[authGuard], children:[
         {path:"", redirectTo:"home", pathMatch:"full"},
+        {path:"allorders", redirectTo:"cart", pathMatch:"full"},
         {path:'home',component:HomeComponent, title:"Home"},
         {path:'brands',component:BrandsComponent, title:"Brands"},
         {path:'cart',component:CartComponent, title:"Cart"},
         {path:'categories',component:CategoriesComponent, title:"Categories"},
         {path:'product/:id',component:ProductComponent, title:"Product Details"},
-        {path:'products',component:ProductsComponent, title:"Products"}
+        {path:'products',component:ProductsComponent, title:"Products"},
+        {path:"address/:id",component:AddressComponent, title:"Address"},
+        {path:"wishlist",component:WishlistComponent, title:"Wishlist"}
     ]},
     {path:"**", component:NotfoundComponent}
 ];

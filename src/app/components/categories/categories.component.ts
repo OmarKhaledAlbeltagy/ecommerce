@@ -15,10 +15,9 @@ constructor(private _CategoriesService:CategoriesService){
 
 }
 
-
 allcategories:Category[] = [];
 
-getCategories(){
+ async getCategories(){
   this._CategoriesService.getCategories().subscribe({
    next:(response) => {
     this.allcategories = response.data;
@@ -28,6 +27,7 @@ getCategories(){
 
 ngOnInit(): void {
   this.getCategories()
+
 }
 
 }
