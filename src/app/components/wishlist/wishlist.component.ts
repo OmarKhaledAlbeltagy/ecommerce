@@ -41,6 +41,23 @@ this._CartService.addToCart(id).subscribe({
 })
 }
 
+removeFromWishList(productId:string){
+  console.log(productId);
+
+  this.isLoading = true
+  this._WishlistService.removeFromWishlist(productId).subscribe({
+    next:(res:any)=>{
+      this._WishlistService.wishlistCounter.next(res.data.length)
+      console.log(res);
+      this.getWishlist()
+    },
+    error:(err)=>{
+      console.log(err);
+      this.isLoading = false
+    }
+  })
+}
+
 ngOnInit(): void {
   this.getWishlist()
 }

@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { baseUrl } from '../../enviroment/enviroment.development';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
+  cartCounter:BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(private _HttpClient: HttpClient) { }
 

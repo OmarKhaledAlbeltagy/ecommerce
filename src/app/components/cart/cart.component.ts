@@ -51,8 +51,9 @@ export class CartComponent implements OnInit {
   removeItemFromCart(productId:string){
     this.isLoading = true;
     this._CartService.removeItemFromCart(productId).subscribe({
-      next:(res)=>{
+      next: (res:any)=>{
         console.log(res);
+        this._CartService.cartCounter.next(res.numOfCartItems)
         this.cart = res as cart;
         this.isLoading = false;
       },

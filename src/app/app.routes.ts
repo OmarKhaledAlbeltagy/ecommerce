@@ -14,12 +14,14 @@ import { authGuard } from './core/guards/auth.guard';
 import { isLoggedInGuard } from './core/guards/is-logged-in.guard';
 import { AddressComponent } from './components/address/address.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     {path:"", component:AuthLayoutComponent, canActivate:[isLoggedInGuard], children:[
         {path:"", redirectTo:"signin", pathMatch:"full"},
         {path:"signup",component:SignupComponent,title:"Registration"},
-        {path:"signin", component:SigninComponent, title:"Login"}
+        {path:"signin", component:SigninComponent, title:"Login"},
+        {path:"forgot-password",component:ForgotPasswordComponent, title:"Forgot Password"}
     ]},
     {path:"", component:MainLayoutComponent, canActivate:[authGuard], children:[
         {path:"", redirectTo:"home", pathMatch:"full"},

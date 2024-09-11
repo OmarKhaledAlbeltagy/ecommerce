@@ -20,6 +20,18 @@ export class AuthService {
     return this._HttpClient.post(baseUrl+"api/v1/auth/signin", data)
   } 
 
+  forgotPassword = (email: any): Observable<any> => {
+    return this._HttpClient.post(baseUrl+"api/v1/auth/forgotPasswords", email);
+  }
+
+  verifyRestCode = (resetCode: any): Observable<any> => {
+    return this._HttpClient.post(baseUrl+"api/v1/auth/verifyResetCode", resetCode);
+  }
+
+  resetPassword = (newPassword: any): Observable<any> => {
+    return this._HttpClient.put(baseUrl+"api/v1/auth/resetPassword", newPassword);
+  }
+
   saveUserData = () => {
     let token = localStorage.getItem('token')
     if (token) {
@@ -31,6 +43,5 @@ export class AuthService {
         localStorage.clear();
       }
     }
-
   }
 }

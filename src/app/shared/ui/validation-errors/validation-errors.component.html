@@ -4,9 +4,15 @@
             @if (formName.get(controlName)?.getError('required')) {
                 <li>{{controlName}} is required</li>
             }
-            @if (formName.get(controlName)?.getError('minlength')) {
-                <li>{{controlName}} must be at least 2 characters long</li>
+            @if((formName.get(controlName)?.getError('minlength') || formName.get(controlName)?.getError('maxlength')) && controlName == "resetCode"){
+                <li>{{controlName}} must be 6 characters long</li>
             }
+            @else{
+                @if (formName.get(controlName)?.getError('minlength')) {
+                    <li>{{controlName}} must be at least 2 characters long</li>
+                }
+            }
+         
             @if (formName.get(controlName)?.getError('maxlength')) {
                 <li>{{controlName}} must not exceed 20 characters long</li>
             }

@@ -8,5 +8,5 @@ import { CommonModule } from '@angular/common';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes, withHashLocation(), withViewTransitions(),), provideHttpClient(withFetch()), importProvidersFrom(BrowserAnimationsModule),CommonModule, provideAnimations(),provideToastr() ]
+  providers: [provideRouter(routes, /*withHashLocation(),*/ withViewTransitions(),), provideHttpClient(withFetch()), importProvidersFrom(BrowserAnimationsModule),CommonModule, provideAnimations(),provideToastr() ]
 };

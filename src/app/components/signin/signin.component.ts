@@ -6,12 +6,12 @@ import { signupValidation } from '../../shared/validators/register.validators';
 import { confirmPasswordValidation } from '../../shared/utilities/confirm-password.utility';
 import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ValidationErrorsComponent],
+  imports: [ReactiveFormsModule, CommonModule, ValidationErrorsComponent, RouterLink],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })

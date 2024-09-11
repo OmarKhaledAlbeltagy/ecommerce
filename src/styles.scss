@@ -135,3 +135,10 @@ button.bg-main:hover{
 }
 
 
+.hover-danger:hover{
+    color: var(--bs-danger);
+}
+
+.hover-danger{
+    transition: 700ms;
+}
