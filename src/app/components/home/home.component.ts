@@ -58,7 +58,6 @@ getWishlist(){
         }
       }      
     }
-    
   }
 
   addToWishList(productId:string){

@@ -17,7 +17,10 @@ export class CartService {
   }
 
   addToCart(productId: string) {
-   return this._HttpClient.post(baseUrl + "api/v1/cart", { productId: productId }, {headers: { token: localStorage.getItem('token')! }})
+    return this._HttpClient.post(baseUrl + "api/v1/cart",
+      {
+        productId: productId },
+      { headers: { token: localStorage.getItem('token')! } })
   }
 
   updateCartQuantity(productId: string, count: number) {
